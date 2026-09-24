@@ -16,12 +16,11 @@ compare them systematically. We implement:
                  order RANDOM, averaged over several orders. This isolates how
                  much of our answer comes from the degree ordering.
   memb           Maximum-Excluded-Mass Burning (same reference), the algorithm
-                 Song et al. actually recommend and use for their published
-                 dimensions. It is RADIUS based: repeatedly choose as a centre the
-                 node whose r_B-ball covers the most still-uncovered nodes, then
-                 assign every node to its nearest centre. A box then has radius
-                 <= r_B and hence diameter <= 2 r_B, so the comparable box size is
-                 l_B = 2 r_B + 1.
+                 Song et al. (2007) recommend. It is RADIUS based: repeatedly
+                 choose as a centre the node whose r_B-ball covers the most 
+                 still-uncovered nodes, then assign every node to its nearest
+                 centre. A box then has radius <= r_B and hence diameter 
+                 <= 2 r_B, so the comparable box size is l_B = 2 r_B + 1.
   colouring      the graph-colouring formulation (same reference): build H with
                  i ~ j iff d(i,j) >= l_B and colour it greedily; each colour class
                  has all pairwise distances < l_B and is therefore a valid box.
