@@ -27,10 +27,11 @@ compare them systematically. We implement:
                  Exact-ish but needs the distance matrix, so small graphs only.
 
 Why this matters here specifically: on the nd.edu WWW graph the two published box
-dimensions are 4.1 (Song et al. 2005, who used MEMB) and 4.8 (Fronczak et al.
-2024), while our greedy-degree cover gives 3.86. If MEMB moves our value toward
-4.1 then the disagreement in the literature is an algorithm effect and can be
-stated as such, which is a more useful conclusion than a bare discrepancy.
+dimensions are 4.1 (Song et al. 2005, greedy colouring; see J. Stat. Mech.
+P03006 (2007), Sec. 2) and 4.8 (Fronczak et al. 2024), while our greedy-degree
+cover gives 3.86 on the even ladder. Comparing covers (MEMB agrees with ours to
+1.5% on l_B = 3 -> 5) and grids ({2,3,4,5} gives 4.096) separates an algorithm
+effect from a sampling effect; the paper finds the grid accounts for 4.1.
 
 LIMIT OF MEMB AT LARGE RADIUS (measured, not conjectured)
 ---------------------------------------------------------
