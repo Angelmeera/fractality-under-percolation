@@ -1,0 +1,8 @@
+# Versions this paper's numbers were produced with (Python 3.11).
+# The code has no exotic dependencies; nearby versions should be fine, but the greedy
+# cover is order-sensitive (see docs/METHODS_NOTES.md), so pin these if you are
+# checking our numbers digit for digit rather than reproducing the science.
+numpy==2.4.4
+scipy==1.17.1
+networkx==3.6.1
+matplotlib==3.10.9

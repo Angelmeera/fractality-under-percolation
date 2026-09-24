@@ -1,0 +1,26 @@
+# Data — fetched or built locally, never committed (see data/README.md)
+data/*.gz
+data/*.txt
+data/*.tsv
+data/*.json
+data/*.xml
+!data/get_data.py
+!data/README.md
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Scratch output
+/scratch/
+*.log
+*.part
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
