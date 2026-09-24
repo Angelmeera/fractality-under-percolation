@@ -1,0 +1,141 @@
+{
+ "name": "WWW",
+ "N": 325729,
+ "M": 1090108,
+ "diameter_lb": 46,
+ "argv": [
+  "--www",
+  "data/web-NotreDame.txt.gz",
+  "--l-b",
+  "3",
+  "5",
+  "--jobs",
+  "1",
+  "--out",
+  "results/www_l35.json"
+ ],
+ "main": {
+  "name": "WWW",
+  "N": 325729,
+  "M_edges": 1090108,
+  "mean_degree": 6.693343239318574,
+  "l_B": [
+   3.0,
+   5.0
+  ],
+  "NB": [
+   25160.0,
+   4845.0
+  ],
+  "fractality": {
+   "n": 2,
+   "verdict": "too few points"
+  },
+  "dB": NaN,
+  "dB_R2": NaN,
+  "gamma": 2.496250878805985,
+  "delta": 2.0822884938893695,
+  "delta_per_lB": [
+   2.1653910458888257,
+   1.9991859418899132
+  ],
+  "n_delta_levels": 2,
+  "delta_support_points": [
+   290,
+   263
+  ],
+  "delta_mle": [
+   {
+    "n": 4082,
+    "exponent": 2.200141669153071,
+    "ci": [
+     2.163480747779876,
+     2.239348485296341
+    ],
+    "exponent_discrete": 1.7748259140834681,
+    "n_distinct": 290,
+    "sd_boot": 0.019009865555816286
+   },
+   {
+    "n": 529,
+    "exponent": 1.9946431305745826,
+    "ci": [
+     1.9124462450708648,
+     2.0920692200079953
+    ],
+    "exponent_discrete": 1.677771366107405,
+    "n_distinct": 263,
+    "sd_boot": 0.04604456850626393
+   }
+  ],
+  "gamma_mle": {
+   "n": 163897,
+   "exponent": 1.9235915281157903,
+   "ci": [
+    1.9204008466411093,
+    1.927832407027247
+   ],
+   "exponent_discrete": 1.7522015388958667,
+   "n_distinct": 437,
+   "sd_boot": 0.0019331219704255462
+  },
+  "direct_connected": {
+   "n": 3055,
+   "logB": -0.06289385784542394,
+   "alpha": 0.7450628942647348,
+   "beta": 0.6871963973792901,
+   "alpha_se": 0.015762567758627864,
+   "beta_se": 0.009635197722262519,
+   "R2": 0.6640184974549799,
+   "cond": 9.483873021398326
+  },
+  "disconnected_by_lB": {
+   "3": {
+    "n_boxes": 25160,
+    "n_disconnected": 15494,
+    "frac": 0.615818759936407,
+    "n_fitted": 15124,
+    "frac_fitted": 0.8244512033853478
+   },
+   "5": {
+    "n_boxes": 4845,
+    "n_disconnected": 3800,
+    "frac": 0.7843137254901961,
+    "n_fitted": 3892,
+    "frac_fitted": 0.8972250770811921
+   }
+  },
+  "s_of_l": [
+   0.41509929673608603,
+   0.19769305488101022
+  ],
+  "kB_mean": [
+   3.5166136724960255,
+   3.360577915376677
+  ],
+  "khub_mean": [
+   8.471740858505564,
+   16.998968008255932
+  ],
+  "dk_renorm": NaN,
+  "dk_renorm_fit": {},
+  "dk_from_gamma": NaN,
+  "direct": {
+   "n": 19016,
+   "logB": 1.9711701384529816,
+   "alpha": 0.2001034845404827,
+   "beta": 0.269297382310587,
+   "alpha_se": 0.015067991441261735,
+   "beta_se": 0.006121184836655031,
+   "R2": 0.1480240836432919,
+   "cond": 3.941341015985833
+  },
+  "alpha_macroscopic": NaN,
+  "beta_macroscopic": 1.3824880216817037,
+  "rhs_direct": NaN,
+  "rhs_macroscopic": NaN,
+  "closure_direct_pct": NaN,
+  "closure_macroscopic_pct": NaN,
+  "n_boxes_fitted": 19016
+ }
+}
