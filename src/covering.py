@@ -16,22 +16,22 @@ compare them systematically. We implement:
                  order RANDOM, averaged over several orders. This isolates how
                  much of our answer comes from the degree ordering.
   memb           Maximum-Excluded-Mass Burning (same reference), the algorithm
-                 Song et al. (2007) recommend. It is RADIUS based: repeatedly
-                 choose as a centre the node whose r_B-ball covers the most 
-                 still-uncovered nodes, then assign every node to its nearest
-                 centre. A box then has radius <= r_B and hence diameter 
-                 <= 2 r_B, so the comparable box size is l_B = 2 r_B + 1.
+                 Song et al. actually recommend and use for their published
+                 dimensions. It is RADIUS based: repeatedly choose as a centre the
+                 node whose r_B-ball covers the most still-uncovered nodes, then
+                 assign every node to its nearest centre. A box then has radius
+                 <= r_B and hence diameter <= 2 r_B, so the comparable box size is
+                 l_B = 2 r_B + 1.
   colouring      the graph-colouring formulation (same reference): build H with
                  i ~ j iff d(i,j) >= l_B and colour it greedily; each colour class
                  has all pairwise distances < l_B and is therefore a valid box.
                  Exact-ish but needs the distance matrix, so small graphs only.
 
 Why this matters here specifically: on the nd.edu WWW graph the two published box
-dimensions are 4.1 (Song et al. 2005, greedy colouring; see J. Stat. Mech.
-P03006 (2007), Sec. 2) and 4.8 (Fronczak et al. 2024), while our greedy-degree
-cover gives 3.86 on the even ladder. Comparing covers (MEMB agrees with ours to
-1.5% on l_B = 3 -> 5) and grids ({2,3,4,5} gives 4.096) separates an algorithm
-effect from a sampling effect; the paper finds the grid accounts for 4.1.
+dimensions are 4.1 (Song et al. 2005, who used MEMB) and 4.8 (Fronczak et al.
+2024), while our greedy-degree cover gives 3.86. If MEMB moves our value toward
+4.1 then the disagreement in the literature is an algorithm effect and can be
+stated as such, which is a more useful conclusion than a bare discrepancy.
 
 LIMIT OF MEMB AT LARGE RADIUS (measured, not conjectured)
 ---------------------------------------------------------

@@ -49,7 +49,7 @@ def draw(res):
     a.axhline(DF_EXACT, ls=":", lw=1.1, color=ps.OI["black"],
               label=f"exact $D_f={DF_EXACT:.3f}$")
     a.set(xlabel="$p$", ylabel="$d_B$", title=r"$G^{B}$: box dimension against $p$")
-    a.legend(loc="lower right")
+    a.legend(loc="lower right", frameon=True, facecolor="white", edgecolor="none", framealpha=1)
     fig.tight_layout(pad=.3, w_pad=1.0)
     ps.save(fig, "fig1_pc_dB")
 

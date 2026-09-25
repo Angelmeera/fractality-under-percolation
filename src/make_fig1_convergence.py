@@ -49,7 +49,8 @@ def main():
     for i, (x, y) in enumerate(zip(N, clo)):
         last = i == len(N) - 1
         a.annotate(f"{y:.2f}%", (x, y), textcoords="offset points",
-                   xytext=(-4 if last else 0, -9), ha="right" if last else "center",
+                   xytext=(4 if i == 0 else (-4 if last else 0), -9),
+                   ha="left" if i == 0 else ("right" if last else "center"),
                    fontsize=6, color=C1)
     a.set(xscale="log", xlabel="$N$", ylim=(0, 0.75),
           title=r"closure residual and within-level $\beta$")

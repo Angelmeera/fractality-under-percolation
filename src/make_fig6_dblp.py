@@ -70,7 +70,7 @@ def main():
     a = ax[0]
     i = int(np.argmax(chi))
     near = pc[chi >= chi[i] - 2 * se[i]]
-    a.axvspan(near.min(), near.max(), color=ps.tint(RED, .86), lw=0,
+    a.axvspan(near.min(), near.max(), ymax=0.6, color=ps.tint(RED, .86), lw=0,
               label="$\\chi$ within two standard\nerrors of its maximum\n" + f"($p={near.min():.2f}$–${near.max():.2f}$)")
     a.fill_between(pc, chi - se, chi + se, color=ps.tint(BLUE, .6), lw=0)
     a.plot(pc, chi, "-", color=BLUE, lw=.9, label="mean $\\pm$ one\nstandard error")

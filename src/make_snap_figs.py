@@ -144,7 +144,7 @@ def _barh(a, rows, title, xlabel, fmt="{:.2f}", zero_line=True, yticks=True):
     a.grid(axis="y", visible=False)
     span = max(abs(v) for v in vals) if vals else 1
     for yi, v in zip(y, vals):
-        a.text(v + (.03 * span if v >= 0 else -.03 * span), yi,
+        a.text(v + (.06 * span if v >= 0 else -.06 * span), yi,
                fmt.format(v).replace("-", "\u2212"),
                va="center", ha="left" if v >= 0 else "right", fontsize=6)
     a.margins(x=.42)

@@ -44,7 +44,8 @@ def main():
                            (ax[1], 1.0, r"exact $\beta=1$")):
         axis.axhline(th, color="k", lw=.7, ls=":")
         axis.axvline(pc, color="k", lw=.7, ls="-.")
-        axis.text(0.03, th, name, fontsize=6, va="bottom", ha="left",
+        axis.text(0.97, th, name, fontsize=6, va="bottom", ha="right",
+                  bbox=dict(fc="white", ec="none", pad=0.3),
                   transform=axis.get_yaxis_transform())
     for key, lab, c, mk, ls in styles[:2]:
         rec = (np.array([r[key + "_alpha"] for r in rows])
@@ -52,8 +53,8 @@ def main():
         ax[2].plot(p, rec, marker=mk, ms=2.6, ls=ls, color=c)
     ax[2].axhline(dB, color="k", lw=.7, ls=":")
     ax[2].axvline(pc, color="k", lw=.7, ls="-.")
-    ax[2].text(0.03, dB, r"exact $d_{B}=\ln8/\ln3$", fontsize=6, va="bottom",
-               ha="left", transform=ax[2].get_yaxis_transform())
+    ax[2].text(0.97, dB, r"exact $d_{B}=\ln8/\ln3$", fontsize=6, va="bottom",
+               ha="right", bbox=dict(fc="white", ec="none", pad=0.3), transform=ax[2].get_yaxis_transform())
     ax[0].set(ylabel=r"$\alpha(p)$", title="(a) spreading exponent")
     ax[1].set(ylabel=r"$\beta(p)$", title="(b) mass–degree exponent")
     ax[2].set(ylabel=r"$\alpha+\beta d_{k}$", title="(c) reconstruction")
