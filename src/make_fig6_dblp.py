@@ -1,4 +1,4 @@
-"""fig6_dblp -- paper Fig. 7: bond percolation of the DBLP w>=60 backbone.
+"""fig6_dblp -- paper Fig. 6: bond percolation of the DBLP w>=60 backbone.
 
   (a) finite-cluster susceptibility chi(p), mean and standard error; the band
       marks every p whose chi lies within two standard errors of the maximum
@@ -11,10 +11,10 @@ standard deviation over realizations. delta (and so alpha, beta) exists only
 for realizations whose largest component has at least one l_B level with 25
 boxes at mu >= 1; rows where fewer than half the realizations qualify are drawn
 with open symbols, and rows with fewer than two are not drawn. The p = 1 point
-is the intact backbone, i.e. the w>=60 row of Table 7.
+is the intact backbone, i.e. the w>=60 row of Table 6.
 
 The old version of this figure had a d_B-versus-size panel (a), which duplicated
-Fig. 6(c), and was drawn from results_dblp_final.json; neither is used now.
+Fig. 5(c), and was drawn from results_dblp_final.json; neither is used now.
 
 Drawn at print size via paper_style.py; no transparency (EPS).
 

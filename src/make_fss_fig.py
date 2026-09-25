@@ -1,4 +1,4 @@
-"""fig9_fss -- paper Fig. 5: finite-size scaling of the percolation transition.
+"""fig9_fss -- paper Fig. 4: finite-size scaling of the percolation transition.
 
   (a) susceptibility over finite clusters, G^B at t = 3..6, with error bars
   (b) shift of the pseudo-critical point against N, with the ANALYTIC slope

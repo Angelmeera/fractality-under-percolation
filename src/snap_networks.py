@@ -74,8 +74,8 @@ def load_snap_edgelist(path, verbose=True):
 
     SNAP web graphs are DIRECTED. Box counting is defined on the undirected
     graph, so we symmetrise; duplicate reciprocal links collapse to one edge,
-    which is why 1,497,134 directed hyperlinks give ~7.5x10^5 undirected edges
-    and <k> = 4.6 rather than 9.2. Self-loops are dropped (they are meaningless
+    which is why 1,497,134 directed hyperlinks (27,455 of them self-loops) give
+    1,090,108 undirected edges and <k> = 6.69 rather than 9.2. Self-loops are dropped (they are meaningless
     for shortest-path distance and inflate degree).
     """
     opener = gzip.open if str(path).endswith(".gz") else open
@@ -318,8 +318,11 @@ def _box_diameter(A, bidx, exact_max=64, n_sweeps=3, pos=None):
 
     A greedy box is guaranteed to have diameter < l_B in the FULL graph, but the
     induced subgraph can be disconnected, because the connecting paths may leave
-    the box. We take the maximum over reachable pairs, the same convention as
-    box_triples_greedy().
+    the box. For boxes of up to exact_max nodes we take the maximum over
+    reachable pairs, the same convention as box_triples_greedy(); above that the
+    double sweep starts from the seed and so only explores the seed's own
+    component (12 of 3,229 fitted boxes at t = 5 on the FSFN; it moves the
+    direct alpha by about 0.02).
     """
     m = bidx.size
     if m < 2:
@@ -572,8 +575,10 @@ def _discrete_mle(v, vmin):
     """MLE for a DISCRETE power law, argmax of -n ln zeta(a, vmin) - a sum ln x.
 
     The continuous MLE is badly biased when the support is coarse, which is
-    exactly the FSFN case: degrees take the values kappa^n, so a t = 4 network
-    has five distinct degrees above vmin = 2. Clauset, Shalizi and Newman give
+    exactly the FSFN case: degrees take the values 3 kappa^n (and kappa^t for the
+    two initial nodes), so a t = 4 network has five distinct degrees above
+    vmin = 2. The paper quotes this estimator with k_min = vmin = 2; with
+    k_min = 3 it overshoots instead. Clauset, Shalizi and Newman give
     the discrete likelihood; we maximise it on a grid and refine.
     """
     try:
@@ -600,8 +605,9 @@ def geometric_grid(lam, diameter, tau_max=12, l_max=None):
     """The box sizes commensurate with a scale factor lam: l_B = round(lam^tau)+1.
 
     A hierarchical fractal network built by replacing each edge with a generator
-    of diameter lam is exactly self-similar under coarse-graining at
-    l_B = lam^tau + 1 (a level-tau box has diameter lam^tau, and the covering
+    whose roots are at distance lam is exactly self-similar under coarse-graining
+    at l_B = lam^tau + 1 (on G^B a level-tau edge unit has diameter lam^tau; on
+    G^A it is 29 and 89 at tau = 3, 4, and the covering
     rule admits boxes of diameter < l_B). Sampling l_B *between* those values
     mixes two levels and puts a systematic sawtooth into N_B(l_B) -- which is
     why an arbitrary grid loses several per cent of d_B (see grid_scan).
@@ -631,14 +637,16 @@ def grid_scan(G, lambdas=(1.6, 2.0, 2.5, 3.0, 3.5, 4.0, 5.0), n_jobs=None,
     Motivation, measured on the FSFN (GB, t = 5, N = 18,726, exact d_B = 1.8928,
     d_k = 0.6309):
 
-        grid                      d_B      err     d_k      err   R2(N_B)
-        (2,3,4,6,9,13)            1.7825   5.8 %   0.5743   9.0 %  0.977
-        (2,4,10,28)   <- lam = 3  1.8829   0.5 %   0.6409   1.6 %  0.9996
-        dense 10-point            1.7953   5.2 %   0.5664  10.2 %  0.980
+        grid                               d_B      err     d_k      err   R2(N_B)
+        lam = 1.6 (2,3,4,5,8,11,18,28)     1.8075   4.5 %   0.5668  10.2 %  0.9926
+        lam = 2.0 (2,3,5,9,17)             1.6867  10.9 %   0.4665  26.1 %  0.9816
+        lam = 2.5 (2,3,7,17)               1.6749  11.5 %   0.4297  31.9 %  0.9703
+        lam = 3.0 (2,4,10,28)  <- chosen   1.8632   1.6 %   0.6240   1.1 %  0.9998
+    (canonical cover; results/fsfn5_scan.json)
 
     So the grid is not a cosmetic choice: a grid commensurate with the network's
     scale factor recovers both exponents to ~1 %, and an arbitrary one is out by
-    5-10 % with a visibly worse fit. On a deterministic model we know lam; on a
+    5-12 % in d_B, and more in d_k, with a visibly worse fit. On a deterministic model we know lam; on a
     real network we do not, so we scan lam and keep the grid whose N_B(l_B) power
     law fits best. The scan is reported in full so the reader can see how much
     the answer moves -- silently quoting the best grid would be cheating.

@@ -4,7 +4,8 @@ Avoids dense all-pairs distance matrices entirely.
 Key exact facts for the Yakubo-Fujiki FSFN used here (n_gen=6, m_gen=8, kappa=2, lambda=3):
   * kinship box at level tau  == the tau-generation expansion of one edge of G_{t-tau}
       -> number of boxes  N_B(tau) = m_gen^(t-tau) = 8^(t-tau)      (EXACT, no covering needed)
-      -> box diameter     l_B(tau) = lambda^tau    = 3^tau          (EXACT, by construction)
+      -> box diameter     l_B(tau) = lambda^tau    = 3^tau          (EXACT on G^B; on G^A the
+                                                                 diameter is 29, 89 at tau = 3, 4)
   * old nodes persist; a node's degree multiplies by kappa=2 each generation
       -> d_k measurable EXACTLY as log(k_t/k_{t-tau}) / log(3^tau)
 """

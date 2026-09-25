@@ -490,12 +490,15 @@ def save_weighted(Gw, path):
 #      IDENTITY, not a test:
 #         alpha + beta*d_k = ((delta-2)/(delta-1))d_B + ((gamma-1)/(delta-1))(d_B/(gamma-1))
 #                          = d_B[(delta-2)+1]/(delta-1) = d_B   identically.
-#      So closure_pct always reads ~0 on this route. The MEANINGFUL test on a real
-#      network is whether the EMPIRICAL alpha,beta (from the rescaled, log-binned
-#      mass plots) agree with the derived ones -- exactly what Fronczak's Table 1
-#      reports as "empirical (theoretical)". The genuine, non-tautological
-#      verification of the relation is the one done on the deterministic FSFN with
-#      construction-aware boxes (closure 0.36%).
+#      So closure_pct always reads ~0 on this route. Nor is the comparison of
+#      "empirical" with derived alpha, beta (Fronczak's Table 1) independent: each
+#      empirical exponent is fitted to masses rescaled by the DERIVED value of the
+#      other, so both pass through gamma and delta. The direct joint fit over
+#      greedy boxes (snap_networks.joint_mass_law) is the only route that does not,
+#      and on the FSFN, where the answer is exact, it fails (paper Sec. 4.4).
+#      Even on the FSFN with construction-aware boxes the closure (0.36%) is a
+#      consistency check forced by the tiling, not a test (paper Sec. 4.1); the
+#      evidence there is alpha and beta against their exact values.
 
 def _ccdf_exponent(vals, vmin=None):
     """Exponent q of P(X>=x) ~ x^-(q-1); returns q, the index of P(x)~x^-q."""

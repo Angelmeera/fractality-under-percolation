@@ -86,8 +86,8 @@ for which in ("GB","GA"):
 
 # ---- Figures ----
 # Drawn at print size by make_fig1_fig4.py (which can also redraw them from
-# results/results_yf.json alone): fig1_pc_dB (paper Fig. 2) and
-# fig4_clustering (paper Fig. 4), PNG + EPS.
+# results/results_yf.json alone): fig1_pc_dB (paper Fig. 1) and
+# fig4_clustering (paper Fig. 3), PNG + EPS.
 json.dump(res, open(os.path.join(RES, "results_yf.json"), "w"), indent=2)
 import make_fig1_fig4
 make_fig1_fig4.draw(res)

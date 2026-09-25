@@ -1,4 +1,4 @@
-"""fig3_alpha_beta_corrected -- paper Fig. 3: alpha(p), beta(p) under three
+"""fig3_alpha_beta_corrected -- paper Fig. 2: alpha(p), beta(p) under three
 box-mass conventions, plus the mass-law reconstruction alpha + beta d_k.
 Data from results/m5_control_t5.json (m5_control_t5.py); nothing recomputed.
 Drawn at print size via paper_style.py.

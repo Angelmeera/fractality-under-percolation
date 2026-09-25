@@ -7,11 +7,11 @@
                         (a) d_B vs R^2 for every candidate grid, (b) the WWW
                         parity effect, (c) d_B vs N across the DBLP sweep
 
-Inputs (all in results/): the *_comm.json records behind Table 9, the
+Inputs (all in results/): the *_comm.json records behind Table 8, the
 *_scan.json candidate-grid scans, controls.json and dblp_sweep_canonical.json.
 The earlier version read results_nonfractal_controls.json and the old
-results_*_scan.json files, which predate the canonical cover, so Fig. 8 and
-Fig. 6(a) disagreed with Table 9 in the second decimal.
+results_*_scan.json files, which predate the canonical cover, so Fig. 7 and
+Fig. 5(a) disagreed with Table 8 in the second decimal.
 
 Reads whatever result JSONs exist and silently skips the rest, so it can be run
 before every dataset has been fetched.
@@ -83,10 +83,10 @@ def _load(name):
         return json.load(fh)
 
 
-# Where each series comes from. "main" is the record behind Table 9 (the
+# Where each series comes from. "main" is the record behind Table 8 (the
 # selected grid, canonical str(node)-tie-broken cover); "scan" holds the
-# candidate grids for Fig. 6(a) and, for the WWW, the per-l_B counts for
-# Fig. 6(b). Every file is in results/ and is written by the command given in
+# candidate grids for Fig. 5(a) and, for the WWW, the per-l_B counts for
+# Fig. 5(b). Every file is in results/ and is written by the command given in
 # docs/REPRODUCING.md.
 SOURCES = [
     # (main file, scan file or None)
@@ -184,7 +184,7 @@ def fig_fractality(data):
     _barh(ax[1], aic_rows, r"(b) $\Delta$AIC",
           r"$\Delta$AIC (negative: power law)", fmt="{:+.1f}")
     # Only the SIGN is diagnostic, and only where s(l_B) is itself a power law
-    # (Table 9, Delta AIC_s); the caption says so.
+    # (Table 8, Delta AIC_s); the caption says so.
     _barh(ax[2], dk_rows, r"(c) sign of $d_k$", r"renormalization $d_k$", yticks=False)
     ax[1].set_xlim(-47, 16)
     ax[2].set_xlim(-4.3, 4.5)

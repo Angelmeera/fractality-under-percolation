@@ -15,9 +15,8 @@ compare them systematically. We implement:
                  Mech. P03006 (2007)): the same admission rule but with the seed
                  order RANDOM, averaged over several orders. This isolates how
                  much of our answer comes from the degree ordering.
-  memb           Maximum-Excluded-Mass Burning (same reference), the algorithm
-                 Song et al. actually recommend and use for their published
-                 dimensions. It is RADIUS based: repeatedly choose as a centre the
+  memb           Maximum-Excluded-Mass Burning (same reference), which Song et
+                 al. recommend for large networks. It is RADIUS based: repeatedly choose as a centre the
                  node whose r_B-ball covers the most still-uncovered nodes, then
                  assign every node to its nearest centre. A box then has radius
                  <= r_B and hence diameter <= 2 r_B, so the comparable box size is
@@ -28,10 +27,12 @@ compare them systematically. We implement:
                  Exact-ish but needs the distance matrix, so small graphs only.
 
 Why this matters here specifically: on the nd.edu WWW graph the two published box
-dimensions are 4.1 (Song et al. 2005, who used MEMB) and 4.8 (Fronczak et al.
-2024), while our greedy-degree cover gives 3.86. If MEMB moves our value toward
-4.1 then the disagreement in the literature is an algorithm effect and can be
-stated as such, which is a more useful conclusion than a bare discrepancy.
+dimensions are 4.1 (Song et al. 2005, from the greedy-colouring cover; see Song et
+al., J. Stat. Mech. P03006 (2007), Sec. 2) and 4.8 (Fronczak et al. 2024), while our
+greedy-degree cover gives 3.86 on the even ladder. MEMB agrees with our cover to
+1.5% on l_B = 3 -> 5 (3.275 against 3.225), so on the interval both can cover the
+choice of algorithm does not explain the discrepancy; the box-size grid does most of
+it (4.096 on l_B = 2..5, paper Sec. 4.8).
 
 LIMIT OF MEMB AT LARGE RADIUS (measured, not conjectured)
 ---------------------------------------------------------

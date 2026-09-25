@@ -1,22 +1,22 @@
-"""Bond percolation of the DBLP w>=60 backbone (paper Fig. 7(b,c) and the
-bullet list after Table 7), on the same pipeline as the Table 7 sweep.
+"""Bond percolation of the DBLP w>=60 backbone (paper Fig. 6(b,c) and the
+bullet list after Table 6), on the same pipeline as the Table 6 sweep.
 
 This replaces the `percolation_w60` block of the old results_dblp_final.json,
 which was produced by `run_dblp.py --percolate` through
 real_network.percolate_real(): a different cover (fronczak_protocol), a
 different grid (l_B up to 13) and three realizations per p. Its intact d_B
-(1.824) therefore did not match Table 7 (1.952) for the same graph.
+(1.824) therefore did not match Table 6 (1.952) for the same graph.
 
 Here every quantity comes from snap_networks.analyse() -- the canonical
-str(node)-tie-broken streaming cover used for Table 7 -- on the grid
-l_B in {2,3,4,6,9}, so the p = 1 row reproduces the w>=60 row of Table 7 exactly.
+str(node)-tie-broken streaming cover used for Table 6 -- on the grid
+l_B in {2,3,4,6,9}, so the p = 1 row reproduces the w>=60 row of Table 6 exactly.
 
 For each p in 0.35, 0.40, ..., 1.00 and each of N_REAL realizations the
 backbone is bond-percolated (each edge kept with probability p), the largest
 component is kept if it has at least MIN_GIANT nodes, and d_B, gamma, delta and
 the macroscopic alpha = (delta-2)/(delta-1) d_B, beta = (gamma-1)/(delta-1)
 are measured on it. delta is the median of the per-l_B CCDF slopes, and a
-level contributes one only if at least 25 boxes have mu >= 1 (Sec. 2 of the
+level contributes one only if at least 25 boxes have mu >= 1 (Sec. 2.3 of the
 paper); when no level qualifies, delta, alpha and beta are left undefined
 (NaN) for that realization and the count of finite values is stored as
 <key>_n. There is deliberately no fallback: the old fronczak_protocol()
@@ -122,8 +122,8 @@ def main():
     out = {"argv": sys.argv, "threshold": THRESHOLD, "grid": list(GRID),
            "seed": SEED, "n_realizations": N_REAL, "n_chi": N_CHI,
            "min_giant": MIN_GIANT,
-           "note": "Paper Fig. 7(b,c) and the DBLP percolation paragraph. "
-                   "p = 1 is the intact backbone (one cover, = Table 7 row w>=60).",
+           "note": "Paper Fig. 6(b,c) and the DBLP percolation paragraph. "
+                   "p = 1 is the intact backbone (one cover, = Table 6 row w>=60).",
            "ps_chi": PS_CHI, "chi": chi, "chi_se": chi_se,
            "chi_peak_p": PS_CHI[ipk], "rows": rows}
     os.makedirs(os.path.dirname(OUT) or ".", exist_ok=True)

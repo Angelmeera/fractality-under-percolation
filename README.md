@@ -32,8 +32,8 @@ more than the effects usually being reported.
 ```
 src/         all analysis code (flat package; scripts import their siblings)
 data/        get_data.py + instructions — no data files are committed
-results/     the 26 JSONs behind the numbers in the paper
-figures/     the eight figures as published
+results/     the 28 JSONs behind the tables and figures of the paper
+figures/     the figures (seven in the manuscript; fig5_convergence is an extra)
 docs/        REPRODUCING.md (command → output → table) and METHODS_NOTES.md
 ```
 
@@ -84,32 +84,33 @@ quoted without a record of how it was produced
 | `run_yf.py` | the exact-model checks and `results_yf.json`, then draws `fig1_pc_dB` and `fig4_clustering` via `make_fig1_fig4.py` |
 | `table3_nulls.py` | Table 3 in full: the intact-network fit, the shuffled and random-regressor nulls (1000 seeded draws) and the edge-centred estimator |
 | `run_dblp.py` | builds the DBLP co-authorship graph from a dump (its `--percolate` option is the old estimator with a pooled-δ fallback; the paper's percolation run is `dblp_percolation.py`) |
-| `dblp_percolation.py` | bond percolation of the DBLP `w ≥ 60` backbone on the Table 7 grid and cover: `χ(p)` and `d_B`, γ, δ, α, β of the largest component |
+| `dblp_percolation.py` | bond percolation of the DBLP `w ≥ 60` backbone on the Table 6 grid and cover: `χ(p)` and `d_B`, γ, δ, α, β of the largest component |
 | `dblp_sweep2.py` | the weak-tie threshold sweep |
 | `run_covering.py` | the four-algorithm comparison |
+| `memb_fsfn.py` | MEMB-only covers of the FSFN, for Table 9's MEMB rows |
 | `controls.py` | the non-fractal controls (Barabási–Albert `m = 1, 2`, Erdős–Rényi) |
 | `fss.py` | finite-size scaling for the percolation critical exponents |
-| `run_large.py` | the large-generation runs, including the simulated `p_c(N)` of Fig. 1 |
+| `run_large.py` | the large-generation runs, including the simulated `p_c(N)` of Sec. 4.2 |
 | `real_network.py` | DBLP parsing, weighting and backbone extraction |
 
-**Audits** — written for this revision, and the reason several claims in the paper
-changed
+**Audits** — checks that any covering can be run against
 
 | file | what it checks |
 |---|---|
 | `conn_audit.py` | how many greedy boxes are internally *disconnected*, and what the mass-law fit looks like without them |
 | `m5_control_t5.py` | the same percolation run under three different definitions of "the mass of a fragmented box" |
 | `subgrid_daic.py` | Δ AIC over *every* ≥3-point subgrid, which is what shows a single Δ AIC is not a verdict |
+| `tiebreak_spread.py` | how much the intact FSFN `d_B` depends on the seeding tie-break, over random orders within degree classes |
 
 **Figures**: `make_fig1_convergence.py`, `make_fig1_fig4.py`, `redo_fig2.py`,
 `make_fig3_conventions.py`, `make_fig6_dblp.py`, `make_snap_figs.py`, `make_fss_fig.py`,
-all sharing the print style in `paper_style.py`; `run_yf.py` also draws Figs 2 and 4.
+all sharing the print style in `paper_style.py`; `run_yf.py` also draws Figs 1 and 3.
 Every figure in `figures/` is drawn by one of these from a file in `results/`, as a
 600-dpi PNG and a vector EPS at the printed width of 5.0 in.
 
 ## Results
 
-`results/` holds the 26 JSONs behind the tables and figures. Each carries its own `argv`, the
+`results/` holds the 28 JSONs behind the tables and figures. Each carries its own `argv`, the
 box-size grid, `N_B(l_B)`, the fits and the diagnostics.
 [`docs/REPRODUCING.md`](docs/REPRODUCING.md) maps each table and figure to the file and
 the command that made it.
@@ -133,10 +134,11 @@ more than several published disagreements about `d_B`:
 
 Under the canonical order the three independent cover implementations in this repo
 (`fast_cover`, `snap_networks`, `covering`) agree exactly, across process counts and
-across `PYTHONHASHSEED`. The dense-matrix cover in `fractal_dynamics`, used by
-`run_yf.py` for Figs 2 and 4 only, seeds without the `str(node)` tie-break and gives
-`d_B = 1.849` against the canonical 1.847 on the `t = 4` FSFN. Earlier output of
-ours that predates the fixed order is superseded and is not included here.
+across `PYTHONHASHSEED`, and `run_yf.py` (Figs 1 and 3) uses the same order. On the
+clustered generator `G^A` the tie-break matters far more than on `G^B`: its intact `d_B`
+is 1.612 under `str(node)` and `1.70 ± 0.07` over random orders within degree classes
+(`results/tiebreak_spread.json`). Earlier output of ours that predates the fixed order
+is superseded and is not included here.
 
 `docs/METHODS_NOTES.md` covers this and three more: about half of all greedy boxes are
 internally disconnected; the box-mass cut silently removes the smallest box size from

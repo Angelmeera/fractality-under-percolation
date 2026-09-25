@@ -1,0 +1,122 @@
+{
+ "argv": {
+  "commensurate": [
+   "--t",
+   "4",
+   "5",
+   "--r-b",
+   "1",
+   "4",
+   "13",
+   "--key",
+   "commensurate",
+   "--out",
+   "results/covering_memb.json"
+  ],
+  "integer_ladder_t5": [
+   "--t",
+   "5",
+   "--r-b",
+   "1",
+   "2",
+   "3",
+   "4",
+   "5",
+   "6",
+   "9",
+   "--key",
+   "integer_ladder_t5",
+   "--out",
+   "results/covering_memb.json"
+  ]
+ },
+ "note": "MEMB rows of the covering-comparison table. At r_B = (3^tau - 1)/2 MEMB returns N_{t-1}, N_{t-2}, N_{t-3} exactly.",
+ "commensurate": [
+  {
+   "name": "FSFN-GB-t4",
+   "N": 2342,
+   "memb": {
+    "r_B": [
+     1,
+     4,
+     13
+    ],
+    "l_B_equiv": [
+     3,
+     9,
+     27
+    ],
+    "NB": [
+     294,
+     38,
+     6
+    ],
+    "dB": 1.771243749161422,
+    "R2": 0.9991190018283105
+   },
+   "exact_dB": 1.892789260714372
+  },
+  {
+   "name": "FSFN-GB-t5",
+   "N": 18726,
+   "memb": {
+    "r_B": [
+     1,
+     4,
+     13
+    ],
+    "l_B_equiv": [
+     3,
+     9,
+     27
+    ],
+    "NB": [
+     2342,
+     294,
+     38
+    ],
+    "dB": 1.875627292239529,
+    "R2": 0.9999832808785569
+   },
+   "exact_dB": 1.892789260714372
+  }
+ ],
+ "integer_ladder_t5": [
+  {
+   "name": "FSFN-GB-t5",
+   "N": 18726,
+   "memb": {
+    "r_B": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     9
+    ],
+    "l_B_equiv": [
+     3,
+     5,
+     7,
+     9,
+     11,
+     13,
+     19
+    ],
+    "NB": [
+     2342,
+     2342,
+     1318,
+     294,
+     294,
+     294,
+     166
+    ],
+    "dB": 1.6792152340532498,
+    "R2": 0.8619384807369176
+   },
+   "exact_dB": 1.892789260714372
+  }
+ ]
+}

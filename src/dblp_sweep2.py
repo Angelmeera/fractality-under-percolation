@@ -1,4 +1,4 @@
-"""Regenerate the DBLP weak-tie sweep (paper Table 2) with the canonical
+"""Regenerate the DBLP weak-tie sweep (paper Table 6) with the canonical
 seeding order and the streaming cover.
 
 Two reasons this replaces the earlier `run_dblp.py --sweep` numbers:

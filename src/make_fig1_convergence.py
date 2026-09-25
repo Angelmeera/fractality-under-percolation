@@ -1,4 +1,6 @@
-"""fig5_convergence -- paper Fig. 1: convergence with system size on G^B.
+"""fig5_convergence -- convergence with system size on G^B. (This was Fig. 1 of an
+earlier draft; the current manuscript quotes its numbers in Table 3 and Sec. 4.2
+instead, so the figure is kept here only as a convenience.)
 
   left   closure residual |d_B - (alpha + beta d_k)| / d_B of the hub-centred
          mass-law fit, and the within-level estimate of beta, at t = 4, 5, 6

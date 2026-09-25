@@ -1,4 +1,4 @@
-"""fig1_pc_dB and fig4_clustering -- paper Figs 2 and 4.
+"""fig1_pc_dB and fig4_clustering -- paper Figs 1 and 3.
 
   fig1_pc_dB       G^B at t = 4: left, the finite-cluster susceptibility with
                    the analytical p_c and the sweep's highest point; right,

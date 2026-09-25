@@ -1,7 +1,7 @@
 """Covers at EVERY box size up to the pipeline's largest, and the grid rule
-applied with all four candidate families (paper Sec. 2.3, Sec. 4.9, Table 9).
+applied with all four candidate families (paper Sec. 2.3, Sec. 4.9, Table 8).
 
-The grid scans behind Tables 5, 9 and 10 (run_snap.py --scan, controls.py)
+The grid scans behind Tables 4, 8 and 9 (run_snap.py --scan, controls.py)
 cover only the union of the geometric candidate grids {lambda^tau + 1}. The
 arithmetic grids quoted in the text need further sizes (l_B = 6, 7, 10, ...),
 so this script covers every l_B from 2 to l_max and scores, on those counts:
@@ -13,7 +13,7 @@ so this script covers every l_B from 2 to l_max and scores, on those counts:
   consecutive    all covered sizes, and all but l_B = 2
 
 and it records the dAIC range over every subgrid of >= 3 covered sizes (the
-Table 9 definition, here over the full size set; skipped for the FSFN, whose
+Table 8 definition, here over the full size set; skipped for the FSFN, whose
 27 sizes give 2^27 subgrids).
 
 Networks and l_max:

@@ -1,6 +1,6 @@
 # Regenerated results
 
-The JSONs behind every number in the paper. Each carries its own `argv`, so a result is
+The JSONs behind the tables and figures of the paper. Each carries its own `argv`, so a result is
 never separated from the command that produced it.
 
 All covering-derived numbers here were regenerated under a single seeding order (see
@@ -29,10 +29,18 @@ knowing before you open anything:
 - **`extended_covers.json`**: one record per network with `N_B` at every `l_B` from 2 to
   `l_max`, every candidate grid (`family` = geometric, arithmetic or consecutive), the best
   grid overall and the best geometric one, and `dAIC_range_all_sizes` over every
-  subgrid of those sizes (not computed for the FSFN). Table 9's range column is over the
+  subgrid of those sizes (not computed for the FSFN). Table 8's range column is over the
   sizes of the geometric scan only; this file holds the wider ranges quoted in Sec. 4.9.
 - **`www_scan.json`** is scored offline by `combine_grids.py` from `www_comm.json`
   (`l_B = 2, 4, 6`) and `www_l35.json` (`l_B = 3, 5`).
+- **`covering_memb.json`**: the MEMB rows of Table 9. `commensurate` holds `t = 4, 5` at
+  `r_B = 1, 4, 13`, where MEMB returns exactly `N_{t-1}, N_{t-2}, N_{t-3}`;
+  `integer_ladder_t5` holds `t = 5` at `r_B = 1..6, 9`.
+- **`tiebreak_spread.json`**: intact `t = 4` covers of `G^A` and `G^B` under the `str(node)`,
+  numeric and NumPy-argsort tie-breaks, and over 30 random orders within degree classes
+  (`seed` 1).
+- **`results_large.json`**: only `B_pc` (the simulated `p_c(N)` of Sec. 4.2) is used in
+  the paper. `A_intact` (the old edge-unit estimator) and `C_dyn` are superseded.
 - **`results_fss.json`** and **`dblp_sweep_canonical.json`** have a top-level `argv`
   and `note`: the finite-size-scaling run depends on `--jobs` through its seeds, and
   both files were reproduced bit-for-bit from the current code.
