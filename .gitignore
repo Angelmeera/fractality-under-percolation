@@ -4,6 +4,7 @@ data/*.txt
 data/*.tsv
 data/*.json
 data/*.xml
+data/*.npz
 !data/get_data.py
 !data/README.md
 

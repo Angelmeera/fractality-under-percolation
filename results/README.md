@@ -33,6 +33,13 @@ knowing before you open anything:
   sizes of the geometric scan only; this file holds the wider ranges quoted in Sec. 4.9.
 - **`www_scan.json`** is scored offline by `combine_grids.py` from `www_comm.json`
   (`l_B = 2, 4, 6`) and `www_l35.json` (`l_B = 3, 5`).
+- **`www_l6.json`**: the direct joint fit over the boxes of one `l_B` at a time
+  (`single_lB`), from the same `l_B = 2, 4, 6` covers as `www_comm.json`. Table 4's
+  "`l_B = 6` alone" row is `single_lB["6"].direct`. `pooled` is the fit over all three
+  levels and `check` records that it and every `N_B` reproduce `www_comm.json` exactly.
+  This file was made from an uncompressed copy of the SNAP edge list, so its `argv` reads
+  `data/web-NotreDame.txt` and `input` records that file's own sha256. The reproduction
+  check is what ties it to the same graph as `www_comm.json`.
 - **`covering_memb.json`**: the MEMB rows of Table 9. `commensurate` holds `t = 4, 5` at
   `r_B = 1, 4, 13`, where MEMB returns exactly `N_{t-1}, N_{t-2}, N_{t-3}`;
   `integer_ladder_t5` holds `t = 5` at `r_B = 1..6, 9`.

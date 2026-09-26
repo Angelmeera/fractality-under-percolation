@@ -32,7 +32,7 @@ more than the effects usually being reported.
 ```
 src/         all analysis code (flat package; scripts import their siblings)
 data/        get_data.py + instructions — no data files are committed
-results/     the 28 JSONs behind the tables and figures of the paper
+results/     the 29 JSONs behind the tables and figures of the paper
 figures/     the figures (seven in the manuscript; fig5_convergence is an extra)
 docs/        REPRODUCING.md (command → output → table) and METHODS_NOTES.md
 ```
@@ -100,6 +100,7 @@ quoted without a record of how it was produced
 | `conn_audit.py` | how many greedy boxes are internally *disconnected*, and what the mass-law fit looks like without them |
 | `m5_control_t5.py` | the same percolation run under three different definitions of "the mass of a fragmented box" |
 | `subgrid_daic.py` | Δ AIC over *every* ≥3-point subgrid, which is what shows a single Δ AIC is not a verdict |
+| `www_single_lB.py` | the direct joint fit over the WWW boxes of one `l_B` at a time (Table 4, "`l_B = 6` alone"), with a check that the covers reproduce `www_comm.json` |
 | `tiebreak_spread.py` | how much the intact FSFN `d_B` depends on the seeding tie-break, over random orders within degree classes |
 
 **Figures**: `make_fig1_convergence.py`, `make_fig1_fig4.py`, `redo_fig2.py`,
@@ -110,7 +111,7 @@ Every figure in `figures/` is drawn by one of these from a file in `results/`, a
 
 ## Results
 
-`results/` holds the 28 JSONs behind the tables and figures. Each carries its own `argv`, the
+`results/` holds the 29 JSONs behind the tables and figures. Each carries its own `argv`, the
 box-size grid, `N_B(l_B)`, the fits and the diagnostics.
 [`docs/REPRODUCING.md`](docs/REPRODUCING.md) maps each table and figure to the file and
 the command that made it.

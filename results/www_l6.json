@@ -1,0 +1,159 @@
+{
+ "name": "WWW",
+ "N": 325729,
+ "M": 1090108,
+ "argv": [
+  "--www",
+  "data/web-NotreDame.txt",
+  "--l-b",
+  "2",
+  "4",
+  "6",
+  "--jobs",
+  "2",
+  "--cache",
+  "data/www_boxes.npz",
+  "--check",
+  "results/www_comm.json",
+  "--out",
+  "results/www_l6.json"
+ ],
+ "input": {
+  "path": "data/web-NotreDame.txt",
+  "sha256": "8eda64b3a9aeb7f20cd092c433794281d4250b51c7dad55702f91acc5f2ea08b",
+  "bytes": 21555101
+ },
+ "note": "Direct joint fit of ln m on (ln L, ln k_hub) with L the measured box diameter and mass cut m >= 3, restricted to the boxes of one l_B at a time (single_lB) and, if several l_B are covered, over all of them together (pooled, = snap_networks.analyse 'direct').",
+ "single_lB": {
+  "2": {
+   "l_B": 2,
+   "N_B": 260953,
+   "n_disconnected": 0,
+   "frac_disconnected": 0.0,
+   "n_fitted": 6655,
+   "frac_fitted_disconnected": 0.0,
+   "L_measured_range": [
+    1.0,
+    1.0
+   ],
+   "L_measured_distinct": 1,
+   "direct": {
+    "n": 6655,
+    "alpha": NaN,
+    "beta": NaN,
+    "error": "singular design (Singular matrix); distinct L = 1"
+   },
+   "direct_connected": {
+    "n": 6655,
+    "alpha": NaN,
+    "beta": NaN,
+    "error": "singular design (Singular matrix); distinct L = 1"
+   }
+  },
+  "4": {
+   "l_B": 4,
+   "N_B": 17854,
+   "n_disconnected": 13342,
+   "frac_disconnected": 0.7472835218998544,
+   "n_fitted": 12027,
+   "frac_fitted_disconnected": 0.9263324187245364,
+   "L_measured_range": [
+    1.0,
+    58.0
+   ],
+   "L_measured_distinct": 28,
+   "direct": {
+    "n": 12027,
+    "logB": 1.9769772314997784,
+    "alpha": 0.06155318723256892,
+    "beta": 0.3804746306361822,
+    "alpha_se": 0.023361687262598897,
+    "beta_se": 0.008278687297031637,
+    "R2": 0.24458911387154525,
+    "cond": 5.253445506859145
+   },
+   "direct_connected": {
+    "n": 886,
+    "logB": 0.05862905766566276,
+    "alpha": 0.6358211595884081,
+    "beta": 0.7920064794704146,
+    "alpha_se": 0.05303837745660027,
+    "beta_se": 0.014354892000155993,
+    "R2": 0.7864470552932373,
+    "cond": 13.504655157870248
+   }
+  },
+  "6": {
+   "l_B": 6,
+   "N_B": 3749,
+   "n_disconnected": 3009,
+   "frac_disconnected": 0.8026140304081089,
+   "n_fitted": 3089,
+   "frac_fitted_disconnected": 0.9032049206863062,
+   "L_measured_range": [
+    1.0,
+    58.0
+   ],
+   "L_measured_distinct": 25,
+   "direct": {
+    "n": 3089,
+    "logB": 2.349476690122075,
+    "alpha": -0.1042197348175754,
+    "beta": 0.5844846860559405,
+    "alpha_se": 0.043698246856224844,
+    "beta_se": 0.016271908197441648,
+    "R2": 0.35616803655218565,
+    "cond": 4.634251771304996
+   },
+   "direct_connected": {
+    "n": 299,
+    "logB": -0.4964333841064327,
+    "alpha": 0.9645855546241369,
+    "beta": 0.9531599525352112,
+    "alpha_se": 0.033696440468362496,
+    "beta_se": 0.011313305678236038,
+    "R2": 0.9600168189768341,
+    "cond": 15.829117153780517
+   }
+  }
+ },
+ "pooled": {
+  "l_B": [
+   2,
+   4,
+   6
+  ],
+  "direct": {
+   "n": 21771,
+   "logB": 2.007447820720135,
+   "alpha": 1.0946952876467055,
+   "beta": -0.026063010956425936,
+   "alpha_se": 0.017727148940820444,
+   "beta_se": 0.004802471032771717,
+   "R2": 0.1539055387202919,
+   "cond": 5.968775476435918
+  },
+  "direct_connected": {
+   "n": 7840,
+   "logB": 0.3525340342164795,
+   "alpha": 1.3822862591285308,
+   "beta": 0.35691142457575836,
+   "alpha_se": 0.01716446806764748,
+   "beta_se": 0.006842175104292244,
+   "R2": 0.51669225865995,
+   "cond": 10.78583057084354
+  }
+ },
+ "check": {
+  "reference": "www_comm.json",
+  "levels_compared": [
+   2,
+   4,
+   6
+  ],
+  "pooled_compared": true,
+  "passed": true,
+  "problems": []
+ },
+ "runtime_s": 10.3
+}

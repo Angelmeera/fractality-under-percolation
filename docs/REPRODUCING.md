@@ -55,6 +55,12 @@ python data/get_data.py     # SNAP graphs; see data/README.md for DBLP
 
 python src/run_snap.py --www data/web-NotreDame.txt.gz --l-b 2 4 6 --jobs 2 \
     --out results/www_comm.json          # ~45 min; the l_B = 6 cover is the cost
+# Table 4, row "WWW, l_B = 6 alone": the same covers, fitted one l_B at a time.
+# --check asserts that N_B and the pooled fit reproduce www_comm.json exactly.
+# --cache keeps the box records, so a rerun skips the ~40 min of covering.
+python src/www_single_lB.py --www data/web-NotreDame.txt.gz --l-b 2 4 6 --jobs 2 \
+    --cache data/www_boxes.npz --check results/www_comm.json \
+    --out results/www_l6.json                                               # ~45 min
 python src/run_snap.py --as  data/as20000102.txt.gz --l-b 2 3 7 --jobs 1 \
     --out results/as_comm.json           # ~10 s
 python src/run_snap.py --dblp data/dblp_weighted.tsv.gz --min-joint 60 --l-b 2 3 5 9 17 \
@@ -137,6 +143,7 @@ The plotting scripts only read `results/`; none recomputes anything.
 | Direct joint fit, FSFN `t=4,5,6` commensurate | `fsfn4_comm`, `fsfn5_comm`, `fsfn6_comm` | `run_snap.py --fsfn N --l-b 2 4 10 28` |
 | Grid-selection table, competing grids | `fsfn5_scan.json`, `fsfn6_scan.json` | `run_snap.py --scan` |
 | Direct joint fit, WWW | `www_comm.json` | `run_snap.py --www … --l-b 2 4 6` |
+| Direct joint fit, WWW, `l_B = 6` alone (Table 4); key `single_lB["6"].direct` | `www_l6.json` | `www_single_lB.py --www … --l-b 2 4 6 --check results/www_comm.json` |
 | Direct joint fit, Internet AS | `as_comm.json` | `run_snap.py --as …` |
 | Direct joint fit, DBLP `w ≥ 25`, `w ≥ 60` | `dblp25_comm.json`, `dblp60_comm.json` | `run_snap.py --dblp …` |
 | Fractality test and controls (Table 8) | `controls.json` | `controls.py` |
