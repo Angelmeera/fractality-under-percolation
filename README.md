@@ -13,12 +13,26 @@ percolation, using hierarchical fractal scale-free networks (Yakubo & Fujiki 202
 whose threshold and critical exponents are known in closed form — so every estimator
 can be calibrated against an exact answer before being pointed at real data.
 
-**The short version of the result is negative, and deliberately so.** The mass law
-holds well on the intact model. Under damage the two exponents decouple, but *which*
-one looks fragile turns out to be set by the convention for the mass of a fragmented
-box rather than by the network. And the only route to α and β that does not presuppose
-the scaling relation — a direct joint fit over greedy boxes — fails on a network where
-the answer is known, for reasons this repository documents precisely.
+**The short version.** The mass law holds well on the intact model. Under damage, the
+usual least-squares fit of β against the hubs' *damaged* degrees falls, by an amount
+that depends on how the mass of a fragmented box is defined. For bond occupation
+`p ≥ 0.75` that fall is mainly regression dilution from the binomial thinning of hub
+degrees. Measured against the *pre-damage* degree, used as an instrumental variable,
+the within-level slope of box mass on hub degree stays between 0.97 and 1.04 under three
+box-mass conventions, at `N ≈ 1.9 × 10⁴` and `1.2 × 10⁶`. The closure of
+`d_B = α + β d_k` turns out to be only a weak consistency check. And the only route to
+α and β that does not presuppose the scaling relation — a direct joint fit over greedy
+boxes — fails on a network where the answer is known, for reasons this repository
+documents precisely.
+
+**Revision (October 2026).** The analyses added in response to the referee (the
+instrumental-variable fits, the `t = 7` networks with 1.2 million nodes, the closure
+measured on the same damaged graphs, and the grid-selection criteria) are in
+[`revision/`](revision/README.md), with their own scripts, results and logs. Table,
+figure and section numbers in this README and in `docs/` are those of the **revised**
+manuscript ("SM" = Supplementary Material). Docstrings and comments inside `src/`
+predate the revision and use the submitted version's numbering;
+[`docs/REPRODUCING.md`](docs/REPRODUCING.md) maps one to the other.
 
 If you take one thing from this repo, make it
 **[`docs/METHODS_NOTES.md`](docs/METHODS_NOTES.md)**: four box-covering pitfalls, each
@@ -31,9 +45,10 @@ more than the effects usually being reported.
 
 ```
 src/         all analysis code (flat package; scripts import their siblings)
+revision/    scripts, results and logs of the analyses added in the revision
 data/        get_data.py + instructions — no data files are committed
-results/     the 29 JSONs behind the tables and figures of the paper
-figures/     the figures (seven in the manuscript; fig5_convergence is an extra)
+results/     the 30 JSONs behind the original tables and figures
+figures/     the figures of the main text and the SM (see figures/README.md)
 docs/        REPRODUCING.md (command → output → table) and METHODS_NOTES.md
 ```
 
@@ -81,16 +96,16 @@ quoted without a record of how it was produced
 | file | produces |
 |---|---|
 | `run_snap.py` | the main per-network analysis (FSFN, WWW, Internet AS, DBLP) |
-| `run_yf.py` | the exact-model checks and `results_yf.json`, then draws `fig1_pc_dB` and `fig4_clustering` via `make_fig1_fig4.py` |
+| `run_yf.py` | the exact-model checks and `results_yf.json`, then draws `fig1_pc_dB` (Fig. 1) and `fig4_clustering` (SM Fig. S2) via `make_fig1_fig4.py` |
 | `table3_nulls.py` | Table 3 in full: the intact-network fit, the shuffled and random-regressor nulls (1000 seeded draws) and the edge-centred estimator |
 | `run_dblp.py` | builds the DBLP co-authorship graph from a dump (its `--percolate` option is the old estimator with a pooled-δ fallback; the paper's percolation run is `dblp_percolation.py`) |
-| `dblp_percolation.py` | bond percolation of the DBLP `w ≥ 60` backbone on the Table 6 grid and cover: `χ(p)` and `d_B`, γ, δ, α, β of the largest component |
+| `dblp_percolation.py` | bond percolation of the DBLP `w ≥ 60` backbone on the grid and cover of SM Table S5: `χ(p)` and `d_B`, γ, δ, α, β of the largest component |
 | `dblp_sweep2.py` | the weak-tie threshold sweep |
 | `run_covering.py` | the four-algorithm comparison |
-| `memb_fsfn.py` | MEMB-only covers of the FSFN, for Table 9's MEMB rows |
+| `memb_fsfn.py` | MEMB-only covers of the FSFN, for the MEMB rows of SM Table S3 |
 | `controls.py` | the non-fractal controls (Barabási–Albert `m = 1, 2`, Erdős–Rényi) |
 | `fss.py` | finite-size scaling for the percolation critical exponents |
-| `run_large.py` | the large-generation runs, including the simulated `p_c(N)` of Sec. 4.2 |
+| `run_large.py` | the large-generation runs, including the simulated `p_c(N)` of Sec. 4.1 |
 | `real_network.py` | DBLP parsing, weighting and backbone extraction |
 
 **Audits** — checks that any covering can be run against
@@ -100,18 +115,20 @@ quoted without a record of how it was produced
 | `conn_audit.py` | how many greedy boxes are internally *disconnected*, and what the mass-law fit looks like without them |
 | `m5_control_t5.py` | the same percolation run under three different definitions of "the mass of a fragmented box" |
 | `subgrid_daic.py` | Δ AIC over *every* ≥3-point subgrid, which is what shows a single Δ AIC is not a verdict |
-| `www_single_lB.py` | the direct joint fit over the WWW boxes of one `l_B` at a time (Table 4, "`l_B = 6` alone"), with a check that the covers reproduce `www_comm.json` |
+| `www_single_lB.py` | the direct joint fit over the WWW boxes of one `l_B` at a time (SM Table S4, "`l_B = 6` alone"), with a check that the covers reproduce `www_comm.json` |
 | `tiebreak_spread.py` | how much the intact FSFN `d_B` depends on the seeding tie-break, over random orders within degree classes |
 
 **Figures**: `make_fig1_convergence.py`, `make_fig1_fig4.py`, `redo_fig2.py`,
 `make_fig3_conventions.py`, `make_fig6_dblp.py`, `make_snap_figs.py`, `make_fss_fig.py`,
-all sharing the print style in `paper_style.py`; `run_yf.py` also draws Figs 1 and 3.
-Every figure in `figures/` is drawn by one of these from a file in `results/`, as a
-600-dpi PNG and a vector EPS at the printed width of 5.0 in.
+and `revision/make_figs_rev.py` for the two figures added in the revision, all sharing
+the print style in `paper_style.py`; `run_yf.py` also draws Fig. 1 and SM Fig. S2.
+Every figure in `figures/` is drawn by one of these from a file in `results/` or
+`revision/results/`, as a 600-dpi PNG and a vector EPS at the printed width of 5.0 in.
 
 ## Results
 
-`results/` holds the 29 JSONs behind the tables and figures. Each carries its own `argv`, the
+`results/` holds the 30 JSONs behind the original tables and figures, and
+`revision/results/` those of the analyses added in the revision. Each carries its own `argv`, the
 box-size grid, `N_B(l_B)`, the fits and the diagnostics.
 [`docs/REPRODUCING.md`](docs/REPRODUCING.md) maps each table and figure to the file and
 the command that made it.
@@ -135,7 +152,7 @@ more than several published disagreements about `d_B`:
 
 Under the canonical order the three independent cover implementations in this repo
 (`fast_cover`, `snap_networks`, `covering`) agree exactly, across process counts and
-across `PYTHONHASHSEED`, and `run_yf.py` (Figs 1 and 3) uses the same order. On the
+across `PYTHONHASHSEED`, and `run_yf.py` (Fig. 1 and SM Fig. S2) uses the same order. On the
 clustered generator `G^A` the tie-break matters far more than on `G^B`: its intact `d_B`
 is 1.612 under `str(node)` and `1.70 ± 0.07` over random orders within degree classes
 (`results/tiebreak_spread.json`). Earlier output of ours that predates the fixed order

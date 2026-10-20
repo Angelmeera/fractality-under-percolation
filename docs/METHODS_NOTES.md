@@ -32,7 +32,7 @@ reproducible at all — we once saw the same script return `N_B(l_B=2) = 24,935`
 
 Under the fixed order the three cover implementations here (`fast_cover.cover_one`,
 `snap_networks.cover_stream`, `covering.cover_greedy_degree`) agree exactly, across
-worker counts and across hash seeds. `run_yf.py` (Figs 1 and 3) uses the same canonical
+worker counts and across hash seeds. `run_yf.py` (Fig. 1 and SM Fig. S2) uses the same canonical
 cover. It used to seed through `fractal_dynamics.greedy_box_cover_D`, whose
 `np.argsort` breaks ties by NumPy's unstable sort. That gave `d_B = 1.849` against
 1.847 on `G^B`, but **1.762 against 1.612 on `G^A`**, whose many degree ties make it
@@ -145,7 +145,9 @@ network here admits both signs:
 
 The selected grid is not a neutral draw either: on the WWW the `R²` rule picks
 `{2, 4, 6}`, which is the most power-law-favoring of the forty-two subgrids available
-over the six box sizes covered.
+over the six box sizes covered. (The revised paper no longer selects grids by maximum
+`R²`; it fixes the grid by the network's structure where it can and reports the spread
+over selection criteria otherwise. See `revision/a12_grid_criteria.py` and SM Table S2.)
 
 What survives is a statement *conditional on the grid rule*, quoted alongside the range.
 The sign of the renormalization exponent `d_k` (negative is impossible for a
