@@ -1,10 +1,10 @@
-"""fig9_fss -- SM Fig. S5 (submitted Fig. 4): finite-size scaling of the percolation transition.
+"""fig9_fss -- paper Fig. 4: finite-size scaling of the percolation transition.
 
   (a) susceptibility over finite clusters, G^B at t = 3..6, with error bars
   (b) shift of the pseudo-critical point against N, with the ANALYTIC slope
   (c) collapse of the order parameter using Yakubo-Fujiki's analytic p_c, nu~
-      and beta_perc -- no fitted parameter enters, so a collapse is evidence
-  (d) collapse of the susceptibility, which needs gamma_perc and therefore uses
+      and beta_P -- no fitted parameter enters, so a collapse is evidence
+  (d) collapse of the susceptibility, which needs gamma_chi and therefore uses
       our measured value (they do not publish one for these generators)
 
 Generation is carried by colour AND marker AND line style, generator by filled
@@ -74,7 +74,7 @@ def main():
            transform=a.get_xaxis_transform())
     a.set(xlabel="$p$", ylabel=r"$\chi$ (finite clusters)", yscale="log",
           title=r"(a) $G^{B}$: susceptibility")
-    a.set_ylim(bottom=0.008)
+    a.set_ylim(bottom=0.25)
     a.legend(loc="lower left", frameon=True, facecolor="white", edgecolor="none",
              framealpha=1, borderpad=.2)
 
@@ -118,9 +118,9 @@ def main():
                       mec="white" if which == "GB" else col, mew=.3 if which == "GB" else .6)
             c.plot(x, np.array(r["P"]) * N ** (an["beta"] / an["nut"]), **kw)
             e.plot(x, np.array(r["chi"]) * N ** (-g_meas[which]), **kw)
-    c.set(xlabel=r"$(p-p_c)\,N^{1/\tilde\nu}$", ylabel=r"$P_t\,N^{\beta_{\mathrm{perc}}/\tilde\nu}$",
+    c.set(xlabel=r"$(p-p_c)\,N^{1/\tilde\nu}$", ylabel=r"$P_t\,N^{\beta_P/\tilde\nu}$",
           title="(c) order-parameter collapse")
-    e.set(xlabel=r"$(p-p_c)\,N^{1/\tilde\nu}$", ylabel=r"$\chi\,N^{-\gamma_{\mathrm{perc}}/\tilde\nu}$",
+    e.set(xlabel=r"$(p-p_c)\,N^{1/\tilde\nu}$", ylabel=r"$\chi\,N^{-\gamma_\chi/\tilde\nu}$",
           yscale="log", title="(d) susceptibility collapse")
     e.set_ylim(bottom=4e-6)
     collapse_legend(c, "lower right")

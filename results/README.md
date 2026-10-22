@@ -1,9 +1,7 @@
 # Regenerated results
 
-The JSONs behind the original tables and figures of the paper. Each carries its own `argv`, so a result is
-never separated from the command that produced it. The results of the analyses added in
-the revision are in [`revision/results/`](../revision/README.md). Table, figure and section
-numbers below are those of the revised manuscript ("SM" = Supplementary Material).
+The JSONs behind the tables and figures of the paper. Each carries its own `argv`, so a result is
+never separated from the command that produced it.
 
 All covering-derived numbers here were regenerated under a single seeding order (see
 `docs/METHODS_NOTES.md`, pitfall 1). Output of ours that predates that fix is
@@ -31,27 +29,24 @@ knowing before you open anything:
 - **`extended_covers.json`**: one record per network with `N_B` at every `l_B` from 2 to
   `l_max`, every candidate grid (`family` = geometric, arithmetic or consecutive), the best
   grid overall and the best geometric one, and `dAIC_range_all_sizes` over every
-  subgrid of those sizes (not computed for the FSFN). SM Table S6's range column is over the
-  sizes of the geometric scan only; this file holds the wider ranges quoted in SM Sec. S8.
+  subgrid of those sizes (not computed for the FSFN). Table 8's range column is over the
+  sizes of the geometric scan only; this file holds the wider ranges quoted in Sec. 4.9.
 - **`www_scan.json`** is scored offline by `combine_grids.py` from `www_comm.json`
   (`l_B = 2, 4, 6`) and `www_l35.json` (`l_B = 3, 5`).
-- **`www_l7.json`**: the WWW cover at `l_B = 7` alone (`N_B = 1436`), the third point of
-  the odd ladder `{3, 5, 7}` that gives `d_B = 3.37` (Sec. 6; SM Sec. S7 and Table S2).
-  Its `argv` records the absolute output path of the machine it was run on.
 - **`www_l6.json`**: the direct joint fit over the boxes of one `l_B` at a time
-  (`single_lB`), from the same `l_B = 2, 4, 6` covers as `www_comm.json`. SM Table S4's
+  (`single_lB`), from the same `l_B = 2, 4, 6` covers as `www_comm.json`. Table 4's
   "`l_B = 6` alone" row is `single_lB["6"].direct`. `pooled` is the fit over all three
   levels and `check` records that it and every `N_B` reproduce `www_comm.json` exactly.
   This file was made from an uncompressed copy of the SNAP edge list, so its `argv` reads
   `data/web-NotreDame.txt` and `input` records that file's own sha256. The reproduction
   check is what ties it to the same graph as `www_comm.json`.
-- **`covering_memb.json`**: the MEMB rows of SM Table S3. `commensurate` holds `t = 4, 5` at
+- **`covering_memb.json`**: the MEMB rows of Table 9. `commensurate` holds `t = 4, 5` at
   `r_B = 1, 4, 13`, where MEMB returns exactly `N_{t-1}, N_{t-2}, N_{t-3}`;
   `integer_ladder_t5` holds `t = 5` at `r_B = 1..6, 9`.
 - **`tiebreak_spread.json`**: intact `t = 4` covers of `G^A` and `G^B` under the `str(node)`,
   numeric and NumPy-argsort tie-breaks, and over 30 random orders within degree classes
   (`seed` 1).
-- **`results_large.json`**: only `B_pc` (the simulated `p_c(N)` of Sec. 4.1) is used in
+- **`results_large.json`**: only `B_pc` (the simulated `p_c(N)` of Sec. 4.2) is used in
   the paper. `A_intact` (the old edge-unit estimator) and `C_dyn` are superseded.
 - **`results_fss.json`** and **`dblp_sweep_canonical.json`** have a top-level `argv`
   and `note`: the finite-size-scaling run depends on `--jobs` through its seeds, and

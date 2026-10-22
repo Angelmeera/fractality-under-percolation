@@ -19,8 +19,6 @@ venv/
 /scratch/
 *.log
 *.part
-# ...except the console logs of the revision analyses, which are part of the record
-!revision/logs/*.log
 
 # OS / editor
 .DS_Store
